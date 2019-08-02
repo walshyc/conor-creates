@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegisterForm
 
 def index(request):
@@ -68,4 +69,11 @@ def register(request):
     register_form = UserRegisterForm()
 
     return render(request, 'register.html', {'register_form': register_form})
+
+def user_profile(request):
+    """ Displays the logged in Users profile """
+
+    user = User.objects.get(email = request.user.email)
+
+    return render(request, 'profile.html', {'profile': user})
 
