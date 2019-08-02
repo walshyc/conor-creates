@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Login - Conor Creates{% endblock title %}
+{% block heading %}User Login{% endblock heading %}
+{% block content %}
+<form method="POST" action="">
+        {% csrf_token %}
+        {{ login_form }}
+        <br>
+        <button type="submit" class="btn btn-success">Login</button>
+    </form>
+{% endblock content %}
