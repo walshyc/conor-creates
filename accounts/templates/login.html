@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% load bootstrap_tags %}
 {% block title %}Login - Conor Creates{% endblock title %}
 {% block heading %}User Login{% endblock heading %}
 {% block content %}
 <form method="POST" action="">
         {% csrf_token %}
-        {{ login_form }}
+        {{ login_form| as_bootstrap }}
         <br>
         <button type="submit" class="btn btn-success">Login</button>
     </form>
