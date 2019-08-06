@@ -1,8 +1,30 @@
 {% extends 'base.html' %}
+{% load bootstrap_tags %}
 {% block title %}About Us - Conor Creates{% endblock title %}
-{% block heading %}About{% endblock heading %}
-{% block content %}
 
-<p>HELLO WORLD</p>
+{% block content %}
+<div class="jumbotron" id="about-jumbo">
+
+  </div>
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <h2>About Us</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi nihil error quasi reiciendis deleniti
+            voluptatum sed
+            porro fugit molestias eum culpa amet, dignissimos illo. Similique excepturi quisquam tenetur ipsa doloribus?
+        </p>
+    </div>
+    <div class="col-12 col-lg-6 mb-2">
+        <h2>Contact Us</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form| as_bootstrap }}
+            <br>
+            <button type="submit" class="btn btn-success">Send Message</button>
+        </form>
+    </div>
+</div>
+
+
 
 {% endblock content %}
