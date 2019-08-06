@@ -1,15 +1,101 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}Home - Conor Creates{% endblock title %}
 {% block heading %}{% endblock heading %}
 {% block content %}
-<div class="jumbotron">
-        <h1 class="display-3">Hello, world!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <p class="lead">
-          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        </p>
+<div class="jumbotron" id="home-jumbo">
+  <h4 class="display-6 center">ConorCreates</h4>
+  <p class="lead">Welcome to my Graphic Design Portfolio</p>
+  <hr class="my-4">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae nostrum eveniet ea, assumenda minima quis aliquid
+    doloribus labore facilis earum? Necessitatibus porro nesciunt nisi similique ducimus veritatis a facilis delectus!
+  </p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </p>
+</div>
+<div class="row mb-3">
+  <div class="col">
+    <h4>Our Services</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card bg-light mb-3">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+        <h4 class="card-title">Light card title</h4>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
       </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card bg-light mb-3">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+        <h4 class="card-title">Light card title</h4>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card bg-light mb-3">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+        <h4 class="card-title">Light card title</h4>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card bg-light mb-3">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+        <h4 class="card-title">Light card title</h4>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card bg-light mb-3">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+        <h4 class="card-title">Light card title</h4>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card bg-light mb-3">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+        <h4 class="card-title">Light card title</h4>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col">
+    <h4>Our Work</h4>
+  </div>
+</div>
+<div class="col">
+  <div class="home-slider">
+    <div class="slide"><img src="{% static 'img/logo1.png' %}" alt=""><div class="slide-caption">Logo Design</div></div>
+    <div><img src="{% static 'img/web1.png' %}" alt=""></div>
+    <div><img src="{% static 'img/menu1.png' %}" alt=""></div>
+    <div><img src="{% static 'img/wedding1.png' %}" alt=""></div>
+    <div><img src="{% static 'img/social1.png' %}" alt=""></div>
+    <div><img src="{% static 'img/poster1.png' %}" alt=""></div>
+  </div>
+</div>
 
 {% endblock content %}
