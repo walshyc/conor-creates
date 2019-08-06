@@ -28,3 +28,21 @@
     background-repeat: no-repeat;
     height: 33vh;
 }
+
+/* Single Service Page */
+
+.service-title{
+   width:100%;
+   height: 20vh;
+   background-image: url('https://images.pexels.com/photos/34199/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+
+/* Footer */
+
+.footer{
+   height: 80px;
+   background-color: rgb(44,62,80);
+   color: #18BC9C;
+}

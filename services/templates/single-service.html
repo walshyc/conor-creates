@@ -1,6 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>{{service.name}}</h2>
-<p>{{ service.description }}</p>
+<div class="row">
+    <div class="col">
+        <div class="service-title"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h1>{{ service.name }} - €{{ service.price }}</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <p class="">{{ service.description }}</p>
+    </div>
+</div>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <div class="input-group">
+        <input type="number" name="quantity" min="1" max="5" class="form-control" placeholder="{{service.name}} Quantity">
+        <div class="input-group-btn">
+            <button class="btn btn-success" type="submit">Add to cart</button>
+        </div>
+    </div>
+</form>
 {% endblock %}
