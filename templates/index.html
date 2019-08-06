@@ -11,7 +11,7 @@
     doloribus labore facilis earum? Necessitatibus porro nesciunt nisi similique ducimus veritatis a facilis delectus!
   </p>
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    <a class="btn btn-success btn-lg" href="{% url 'about' %}" role="button">Contact Us</a>
   </p>
 </div>
 <div class="row mb-3">
@@ -20,66 +20,19 @@
   </div>
 </div>
 <div class="row mb-4">
-  <div class="col-12 col-md-6 col-lg-4">
-    <div class="card bg-light mb-3">
-      <div class="card-body">
-        <h4 class="card-title"><i class="fas fa-landmark"></i> Logo Design</h4>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <button type="button" class="btn btn-primary btn-block">Buy Now</button>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 col-md-6 col-lg-4">
-    <div class="card bg-light mb-3">
-      <div class="card-body">
-        <h4 class="card-title"><i class="fas fa-calendar-alt"></i> Event Poster's</h4>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <button type="button" class="btn btn-primary btn-block">Buy Now</button>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 col-md-6 col-lg-4">
-    <div class="card bg-light mb-3">
-      <div class="card-body">
-        <h4 class="card-title"><i class="fas fa-laptop-code"></i> Web Design</h4>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <button type="button" class="btn btn-primary btn-block">Buy Now</button>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 col-md-6 col-lg-4">
-    <div class="card bg-light mb-3">
-      <div class="card-body">
-        <h4 class="card-title"><i class="fas fa-heart"></i> Wedding Stationary</h4>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <button type="button" class="btn btn-primary btn-block">Buy Now</button>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 col-md-6 col-lg-4">
-    <div class="card bg-light mb-3">
-      <div class="card-body">
-        <h4 class="card-title"><i class="fas fa-align-justify"></i> Menus & Brochures</h4>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <button type="button" class="btn btn-primary btn-block">Buy Now</button>
-      </div>
-    </div>
-  </div>
+  {% for service in services %}
   <div class="col-12 col-md-6 col-lg-4">
       <div class="card bg-light mb-3">
         <div class="card-body">
-          <h4 class="card-title"><i class="fab fa-facebook"></i> Social Media Graphics</h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-            <button type="button" class="btn btn-primary btn-block">Buy Now</button>
+          <h4 class="card-title"><i class="fas fa-landmark"></i> {{ service.name }}</h4>
+          <p class="card-text">{{ service.description|truncatewords:28 }}</p>
+          <a href="{% url 'single-service' service.id %}" type="button" class="btn btn-primary btn-block">View More</a>
         </div>
       </div>
     </div>
+  {% endfor %}
+
+
 
 </div>
 

@@ -4,18 +4,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegisterForm
 from django.conf import settings
+from services.models import Service
 import os
 
 def index(request):
     """ Return the index.html file"""
-    image_list=[]
-    for root, dirs, files in os.walk(settings.STATIC_URL):
-        for file in files:
-            if file.endswith(".png"):
-                image_list.append(file)
-    
+    services = Service.objects.all()
 
-    return render(request, 'index.html', {'images':image_list})
+    return render(request, 'index.html', {'services':services})
 @login_required
 def logout(request):
     """ Log the user out """
