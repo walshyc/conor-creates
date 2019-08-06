@@ -3,11 +3,15 @@
 {% block title %}Login - Conor Creates{% endblock title %}
 {% block heading %}User Login{% endblock heading %}
 {% block content %}
-<form method="POST" action="">
-        {% csrf_token %}
-        {{ login_form| as_bootstrap }}
-        <br>
-        <button type="submit" class="btn btn-success">Login</button>
-    </form>
-    <small><a href="{% url 'password_reset' %}">Reset Password</a></small>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ login_form| as_bootstrap }}
+            <br>
+            <button type="submit" class="btn btn-success">Login</button>
+        </form>
+        <small><a href="{% url 'password_reset' %}">Reset Password</a></small>
+    </div>
+
+
 {% endblock content %}
