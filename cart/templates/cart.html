@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+{% block content %}
+<h1>Shopping Cart</h1>
+<div class="row">
+{% for i in cart_items  %}
+<div class="row mt-3">
+        <div class="col">
+            <div class="card">
+                <div class="row ">
+                    <div class="col-md-4">
+                        <img src="{{ MEDIA_URL }}{{ i.service.images}}" alt="">
+                    </div>
+                    <div class="col-md-8 px-3 mt-2 mb-3">
+                        <div class="card-block px-3">
+                            <h4 class="card-title">{{ i.service.name }}</h4>
+                            <p>€{{ i.service.price }}</p>
+
+                            <form method="POST" action="{% url 'adjust_cart' i.id %}" class="form-inline">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="input-amount" class="sr-only">New Quantity</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">Quantity</div>
+                                        <input class="form-control" type="number" name="quantity" min="0" max="10" placeholder="{{i.quantity}}">
+                                            
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit"><i class="fas fa-edit"></i>Edit</button>
+                            </form>
+                            
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+<h6>Cart Total</h6>
+<h5>€{{ total }}</h5>
+  
+{% endblock content %}

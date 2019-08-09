@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<form method="POST" action="">
+<form method="POST" action="{% url 'add_to_cart' service.id %}">
     {% csrf_token %}
     <div class="input-group">
         <input type="number" name="quantity" min="1" max="5" class="form-control" placeholder="{{service.name}} Quantity">

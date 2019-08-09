@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'about',
     'services',
+    'cart',
     'django_forms_bootstrap'
 ]
 
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'cart.contexts.cart_contents'
             ],
         },
     },
