@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+{% block stripeJS %}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }};'
+    //]]
+</script>
+<script src="{% static 'js/stripe.js' %}"></script>
+{% endblock stripeJS %}
+{% block content %}
+
+<div class="row">
+    {% for i in cart_items  %}
+    <div class="row mt-3">
+        <div class="col">
+            <div class="card">
+                <div class="row ">
+                    <div class="col-md-4">
+                        <img src="{{ MEDIA_URL }}{{ i.service.images}}" alt="">
+                    </div>
+                    <div class="col-md-8 px-3 mt-2 mb-3">
+                        <div class="card-block px-3">
+                            <h4 class="card-title">{{ i.service.name }}</h4>
+                            <p>€{{ i.service.price }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="row">
+    <p>Total</p>
+    <p>€{{ total }}</p>
+</div>
+
+<div class="row">
+    <div class="col">
+    <form method="POST" role="form" action="{% url 'checkout' %}">
+        {% csrf_token %}
+        <legend>Payment</legend>
+        <div class="credit-card-errors" style="display:none">
+            <div class="alert-message block-message error" id="stripe-error-message"></div>
+        </div>
+
+        <div class="form-group col-md-6">
+            {{order_form|as_bootstrap}}
+        </div>
+        <div class="form-group col-md-6">
+                {{payment_form|as_bootstrap}}
+            </div>
+        <div class="form-group col-md-12">
+            <input class="btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+</div>
+
+{% endblock %}
