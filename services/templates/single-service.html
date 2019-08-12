@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col">
-        <div class="service-title"></div>
+        <div class="service-title" style = "background-position: center center; background-image: url('{{ MEDIA_URL }}{{ random.image }}')"></div>
     </div>
 </div>
 <div class="row">
@@ -17,13 +17,29 @@
     </div>
 </div>
 
+
 <form method="POST" action="{% url 'add_to_cart' service.id %}">
     {% csrf_token %}
     <div class="input-group">
-        <input type="number" name="quantity" min="1" max="5" class="form-control" placeholder="{{service.name}} Quantity">
+        <input type="number" name="quantity" min="1" max="5" class="form-control"
+            placeholder="{{service.name}} Quantity">
         <div class="input-group-btn">
             <button class="btn btn-success" type="submit">Add to cart</button>
         </div>
     </div>
 </form>
+<div class="row mt-4">
+    <div class="col"><h4>Previous {{ service.name }} work</h4></div>
+    <div class="col">
+        <div class="home-slider mb-4">
+            {% for img in images %}
+            <div><img class="img-fluid" src="{{ img.image.url}}" alt=""></div>
+
+            {% endfor %}
+            <!-- <div class="slide"><img src= alt=""><div class="slide-caption">Logo Design</div></div> -->
+
+
+        </div>
+    </div>
+</div>
 {% endblock %}

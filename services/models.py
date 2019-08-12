@@ -12,3 +12,4 @@ class Service(models.Model):
 class ServiceImage(models.Model):
     service = models.ForeignKey(Service, related_name='images')
     image = models.ImageField(upload_to = 'images')
+    
