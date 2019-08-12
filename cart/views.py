@@ -21,7 +21,7 @@ def add_to_cart(request, id):
 
     request.session['cart'] = cart
 
-    return redirect(reverse('index'))
+    return render(request, 'cart.html')
 
 def adjust_cart(request, id):
 

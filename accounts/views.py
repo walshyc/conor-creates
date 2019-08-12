@@ -4,12 +4,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegisterForm
 from django.conf import settings
-from services.models import Service
+from services.models import Service, ServiceImage
 import os
 
 def index(request):
     """ Return the index.html file"""
     services = Service.objects.all()
+    
 
     return render(request, 'index.html', {'services':services})
 @login_required
