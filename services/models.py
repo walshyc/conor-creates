@@ -7,6 +7,7 @@ class Service(models.Model):
     main_image = models.ImageField(upload_to = 'images')
     short = models.CharField(max_length = 20, default = '')
     
+    
     def __str__(self):
         return self.name
     

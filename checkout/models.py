@@ -11,15 +11,22 @@ class Order(models.Model):
     postcode = models.CharField(max_length = 15, blank = True) 
     country = models.CharField(max_length = 50, blank = False)
     date = models.DateField()
+    brief = models.TextField(default="", blank = False)
+    # upload = models.FileField(upload_to="uploads", default="")
 
     def __str__(self):
-        return "{0}-{1}-{2}".format(self.id, self.date, self.full_name)
+        return "{0}-{1}-{2}-{3}".format(self.id, self.date, self.name, self.brief)
+
+class OrderUpload(models.Model):
+    order = models.ForeignKey(Order, related_name='upload')
+    uploaded_file = models.FileField(upload_to = 'images')
 
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null = False)
     service = models.ForeignKey(Service, null = False)
     quantity = models.IntegerField(blank = False)
+
 
     def __str__(self):
         return "{0} {1} @ {2}".format(self.quantity, self.service.name, self.service.price)

@@ -16,11 +16,14 @@ def checkout(request):
     if request.method == "POST":
         order_form = OrderForm(request.POST)
         payment_form = PayForm(request.POST)
+        
 
         if order_form.is_valid() and payment_form.is_valid():
             order = order_form.save(commit=False)
             order.date = timezone.now()
             order.save()
+
+           
 
             cart = request.session.get('cart', {})
             total = 0
@@ -64,6 +67,7 @@ def checkout(request):
     else:
         order_form = OrderForm()
         payment_form = PayForm()
+        
 
     return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
         
