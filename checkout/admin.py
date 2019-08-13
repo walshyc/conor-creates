@@ -9,3 +9,4 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderLineAdminInline, )
 
 admin.site.register(Order, OrderAdmin)
+

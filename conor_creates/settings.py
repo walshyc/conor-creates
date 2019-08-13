@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'services',
     'cart',
     'checkout',
+    'polls',
     'django_forms_bootstrap'
 ]
 
