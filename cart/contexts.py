@@ -23,7 +23,9 @@ def cart_contents(request):
         service_count += quantity
         service_total = service_count * service.price 
 
-        cart_items.append({'id': id, 'quantity': quantity, 'service': service, 'service_total': service_total})
+        brief = request.POST.get('brief')
+
+        cart_items.append({'id': id, 'quantity': quantity, 'service': service, 'service_total': service_total, 'brief': brief})
 
     
     

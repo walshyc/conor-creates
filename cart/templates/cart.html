@@ -17,6 +17,7 @@
                             <h4 class="card-title">{{ i.service.name }}</h4>
                             <p>€{{ i.service.price }}</p>
                             <p>Service Total: €{{ i.service_total}}</p>
+                            <p>{{ brief }}</p>
 
                             <form method="POST" action="{% url 'adjust_cart' i.id %}" class="form-inline">
                                 {% csrf_token %}

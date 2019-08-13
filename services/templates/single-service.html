@@ -19,19 +19,33 @@
     </div>
 </div>
 
-
-<form method="POST" action="{% url 'add_to_cart' service.id %}">
-    {% csrf_token %}
-    <div class="input-group">
-        <input type="number" name="quantity" min="1" max="5" class="form-control"
-            placeholder="{{service.name}} Quantity">
-        <div class="input-group-btn">
-            <button class="btn btn-success" type="submit">Add to cart</button>
-        </div>
+<div class="row">
+    <div class="col-12">
+        <h3>Buy {{ service.name}}</h3>
     </div>
-</form>
+    <div class="col">
+        <form method="POST" action="{% url 'add_to_cart' service.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="quantity">{{service.name}} Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity" min="1" max="20">
+              </div>
+              <div class="form-group">
+                <label for="brief">Design Brief</label>
+                <textarea class="form-control" id="brief" rows="5" placeholder="Give us as much detail as how you would like your design to look!"></textarea>
+              </div>
+              <div class="form-group-btn mb-3">
+                <button class="btn btn-success" type="submit">Add to cart</button>
+            </div>
+        
+        </form>
+    </div>
+</div>
+
 <div class="row mt-4">
-    <div class="col"><h4>Previous {{ service.name }} work</h4></div>
+    <div class="col">
+        <h4>Previous {{ service.name }} work</h4>
+    </div>
     <div class="col">
         <div class="home-slider mb-4">
             {% for img in images %}
