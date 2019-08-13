@@ -21,6 +21,6 @@ class OrderLineItem(models.Model):
     service = models.ForeignKey(Service, null = False)
     quantity = models.IntegerField(blank = False)
 
-    def __str__(seld):
+    def __str__(self):
         return "{0} {1} @ {2}".format(self.quantity, self.service.name, self.service.price)
     

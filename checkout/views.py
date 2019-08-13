@@ -59,7 +59,7 @@ def checkout(request):
 
         else:
             print(payment_form.errors)
-            messages.error(request, "We were unable to process the transcation.")
+            messages.error(request, "Forms did not validate")
 
     else:
         order_form = OrderForm()

@@ -18,7 +18,6 @@ def cart_contents(request):
     
     for id, quantity in cart.items():
         service = get_object_or_404(Service, pk=id)
-        
         total += quantity * service.price
         service_count += quantity
         

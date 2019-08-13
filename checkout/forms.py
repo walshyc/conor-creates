@@ -3,14 +3,14 @@ from checkout.models import Order
 
 class PayForm(forms.Form):
 
-    MONTHS = [(i, i) for i in range(1, 12)]
+    MONTHS = [(i, i) for i in range(1, 13)]
     YEARS = [(i, i) for i in range(2019,2030)]
 
     card_number = forms.CharField(label = "Your Card Number", required = False)
     cvv = forms.CharField(label = "Security Number", required = False)
     expiry_month = forms.ChoiceField(label = "Expiry Month", choices = MONTHS, required = False)
     expiry_year = forms.ChoiceField(label = "Expiry Year", choices = YEARS, required = False)
-    stripe_id = forms.CharField(widget = forms.HiddenInput)
+    stripe_id = forms.CharField(label = "stripe_id", widget = forms.HiddenInput)
 
 
 class OrderForm(forms.ModelForm):
