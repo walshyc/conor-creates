@@ -10,7 +10,7 @@ class PayForm(forms.Form):
     cvv = forms.CharField(label = "Security Number", required = False)
     expiry_month = forms.ChoiceField(label = "Expiry Month", choices = MONTHS, required = False)
     expiry_year = forms.ChoiceField(label = "Expiry Year", choices = YEARS, required = False)
-    stripe_id = forms.CharField(label = "stripe_id", widget = forms.HiddenInput)
+    stripe_id = forms.CharField(widget = forms.HiddenInput)
 
 
 class OrderForm(forms.ModelForm):

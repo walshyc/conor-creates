@@ -16,11 +16,11 @@
         <div class="card">
             <div class="row ">
                 <div class="col-md-4">
-                    <img src="{{ service.images}}" alt="">
+                    <img class="img-fluid" src="{{ service.main_image.url}}" alt="{{ service.name }}">
                 </div>
                 <div class="col-md-8 px-3 mt-2 mb-3">
                     <div class="card-block px-3">
-                        <h4 class="card-title">{{ service.name }}</h4>
+                        <a href="{% url 'single-service' service.id %}"><h4 class="card-title">{{ service.name }}</h4></a>
                         <p class="card-text">{{ service.description }}</p>
                         <a href="{% url 'single-service' service.id %}" class="btn btn-primary">Buy Now</a>
                     </div>

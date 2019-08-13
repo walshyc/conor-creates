@@ -12,18 +12,19 @@ def cart_contents(request):
 
     cart_items = []
     
-    total = 0
+    cart_total = 0
     service_count = 0
-    
+
     
     for id, quantity in cart.items():
+        service_count = 0
         service = get_object_or_404(Service, pk=id)
-        total += quantity * service.price
+        cart_total += quantity * service.price
         service_count += quantity
-        
+        service_total = service_count * service.price 
 
-        cart_items.append({'id': id, 'quantity': quantity, 'service': service})
+        cart_items.append({'id': id, 'quantity': quantity, 'service': service, 'service_total': service_total})
 
     
     
-    return {'cart_items': cart_items, 'total': total, 'service_count': service_count}
+    return {'cart_items': cart_items, 'cart_total': cart_total, 'service_count': service_count}

@@ -10,12 +10,13 @@
             <div class="card">
                 <div class="row ">
                     <div class="col-md-4">
-                        <img src="{{ MEDIA_URL }}{{ i.service.images}}" alt="">
+                        <img class="img-fluid" src="{{ i.service.main_image.url}}" alt="{{ i.service.name }}">
                     </div>
                     <div class="col-md-8 px-3 mt-2 mb-3">
                         <div class="card-block px-3">
                             <h4 class="card-title">{{ i.service.name }}</h4>
                             <p>€{{ i.service.price }}</p>
+                            <p>Service Total: €{{ i.service_total}}</p>
 
                             <form method="POST" action="{% url 'adjust_cart' i.id %}" class="form-inline">
                                 {% csrf_token %}
@@ -40,7 +41,7 @@
 {% endfor %}
 </div>
 <h6>Cart Total</h6>
-<h5>€{{ total }}</h5>
+<h5>€{{ cart_total }}</h5>
 <a href="{% url 'checkout' %}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Checkout</a>
   
 {% endblock content %}

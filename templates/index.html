@@ -53,6 +53,14 @@
     <div><img class="img-fluid" src="{% static 'img/poster1.png' %}" alt=""></div> -->
   </div>
 </div>
+<div class="row">
+  <div class="col">
+    {% for q in current_poll %}
+      <p>{{ q.question_text }}</p>
+      
+    {% endfor %}
+  </div>
+</div>
 
 {% endblock content %}
 
