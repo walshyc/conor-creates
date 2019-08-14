@@ -1,26 +1,21 @@
-import random
-from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.contrib.auth.decorators import login_required
 from payments.forms import SinglePayForm, SingleOrderForm
-from payments.models import SingleOrderLineItem
-from .models import Service, ServiceImage
 from django.contrib import messages
-from django.conf import settings
 from django.utils import timezone
+from payments.models import SingleOrderLineItem
+from services.models import Service
+from django.conf import settings
 import stripe
 
-def all_services(request):
-    services = Service.objects.all()
-    service_images = services.all() 
- 
-    return render(request, 'services.html', {'services': services, 'images': service_images})
+stripe.api_key = settings.STRIPE_SECRET
 
-def single_service(request, pk):
-    service = get_object_or_404(Service, pk=pk)
-    service_images = service.images.all() 
-    
+
+@login_required
+def payment(request, id):
     if request.method == "POST":
         order_form = SingleOrderForm(request.POST)
-        payment_form = SinglePayForm(request.POST)
+        payment_form = PayForm(request.POST)
         
 
         if order_form.is_valid() and payment_form.is_valid():
@@ -28,9 +23,8 @@ def single_service(request, pk):
             order.date = timezone.now()
             order.save()
             quantity = 1
-            serviceID = service.id
 
-            service = get_object_or_404(Service, pk=serviceID)
+            service = get_object_or_404(Service, pk=id)
             total = service.price
             order_line_item = SingleOrderLineItem(
                     order=order,
@@ -68,5 +62,7 @@ def single_service(request, pk):
     else:
         order_form = SingleOrderForm()
         payment_form = SinglePayForm()
+        
 
-    return render(request, 'single-service.html', {'service': service, 'images': service_images, 'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+    return render(request, 'index.html', {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+        
