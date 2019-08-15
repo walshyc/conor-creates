@@ -3,6 +3,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegisterForm
+from accounts.models import Profile
 from django.conf import settings
 from polls.models import poll_choice, poll_question
 from services.models import Service, ServiceImage
@@ -80,7 +81,7 @@ def register(request):
 
 def user_profile(request):
     """ Displays the logged in Users profile """
-
+    profile = Profile
     user = User.objects.get(email = request.user.email)
 
     return render(request, 'profile.html', {'profile': user})
