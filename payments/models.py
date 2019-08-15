@@ -4,12 +4,7 @@ from services.models import Service
 class SingleOrder(models.Model):
     name = models.CharField(max_length=50, blank = False)
     contact_number = models.CharField(max_length = 25, blank = False)
-    address1 = models.CharField(max_length = 50, blank = False)
-    address2 = models.CharField(max_length = 50, blank = True)
-    town = models.CharField(max_length = 50, blank = False)
-    county = models.CharField(max_length = 40, blank = False)
-    postcode = models.CharField(max_length = 15, blank = True) 
-    country = models.CharField(max_length = 50, blank = False)
+    email = models.EmailField(max_length=100, blank = False, default = "")
     date = models.DateField()
     brief = models.TextField(default="", blank = False)
     # upload = models.FileField(upload_to="uploads", default="")

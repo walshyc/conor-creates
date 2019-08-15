@@ -19,8 +19,7 @@ class SinglePayForm(forms.Form):
 class SingleOrderForm(forms.ModelForm):
     class Meta:
         model = SingleOrder
-        fields = ('name', 'contact_number', 'address1', 'address2',
-                  'town', 'county', 'postcode', 'country', 'brief')
+        fields = ('name', 'contact_number', 'email', 'brief')
 
 
 # class BriefForm(forms.ModelForm):
