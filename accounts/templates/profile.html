@@ -4,37 +4,48 @@
 {% block heading %}{{ user|title }}'s Profile{% endblock heading %}
 {% block content %}
 
-<p>{{user.email}}</p>
 <div class="row">
   <div class="col">
     <h3>Your Orders</h3>
   </div>
- 
 </div>
+
+
 <div class="row">
   <div class="col">
-    
-    <table class="table table-hover">
+
+    <table class="table table-hover table-sm ">
       <thead>
         <tr class=" table-success">
           <th scope="col">Date</th>
           <th scope="col">Service</th>
+          <th scope="col">Price</th>
           <th scope="col">Brief</th>
+          <th scope="col">Ready</th>
+          <th scope="col">Download</th>
         </tr>
       </thead>
       <tbody>
-          {% for o in orders %}
+        {% for o in orders %}
+       
+        {% if user == o.order.user %}
         <tr>
           <th scope="row">{{o.order.date}}</th>
           <td>{{o.service}}</td>
+          <td>€{{o.service.price}}</td>
           <td>{{o.order.brief}}</td>
+          <td><i class="fas fa-check"></i></td>
+          <td><i class="fas fa-file-download"></i></td>
         </tr>
+        {% endif %}
         {% endfor %}
       </tbody>
     </table>
-    
+
   </div>
 </div>
+
+
 
 
 <div class="row">
