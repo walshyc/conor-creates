@@ -30,7 +30,8 @@
       <tbody>
         
         {% for o in orders %}
-       {{o.order}}
+      
+        
         {% if user == o.order.user %}
         <tr>
           <th scope="row">{{o.order.date}}</th>
