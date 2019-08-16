@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegisterForm, UserUpdateForm
 from accounts.models import Profile
+from payments.models import SingleOrder, SingleOrderLineItem
 from django.conf import settings
 from polls.models import poll_choice, poll_question
 from services.models import Service, ServiceImage
@@ -82,6 +83,9 @@ def register(request):
 def user_profile(request):
     """ Displays the logged in Users profile """
     
+    orders = SingleOrderLineItem.objects.all()
+    
+
     if request.method == 'POST':
         user_update_form = UserUpdateForm(request.POST, instance = request.user)
     
@@ -93,7 +97,7 @@ def user_profile(request):
         user_update_form = UserUpdateForm(instance = request.user)
    
     user = User.objects.get(email = request.user.email)
-    context = {'user_update_form' : user_update_form, 'profile': user}
+    context = {'user_update_form' : user_update_form, 'profile': user, 'orders':orders}
 
     return render(request, 'profile.html', context)
 
