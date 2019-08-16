@@ -97,7 +97,10 @@ def user_profile(request):
         user_update_form = UserUpdateForm(instance = request.user)
    
     
-    context = {'user_update_form' : user_update_form, 'orders':orders}
+    
+    user = User.objects.get(email = request.user.email)
+
+    context = {'user_update_form' : user_update_form, 'orders':orders, 'profile': user}
 
     return render(request, 'profile.html', context)
 

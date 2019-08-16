@@ -9,7 +9,7 @@
     <h3>Your Orders</h3>
   </div>
 </div>
-<p>{{user}}</p>
+
 
 
 
@@ -30,7 +30,7 @@
       <tbody>
         
         {% for o in orders %}
-       {{o.order.user}}
+       {{o.order}}
         {% if user == o.order.user %}
         <tr>
           <th scope="row">{{o.order.date}}</th>
