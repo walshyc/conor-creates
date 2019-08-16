@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 from services.models import Service
 
 class SingleOrder(models.Model):
+    user = models.ForeignKey(User, default="1", null=False, on_delete=models.DO_NOTHING)
     name = models.CharField(max_length=50, blank = False)
     contact_number = models.CharField(max_length = 25, blank = False)
     email = models.EmailField(max_length=100, blank = False, default = "")

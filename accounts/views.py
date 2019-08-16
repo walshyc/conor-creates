@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from accounts.forms import UserLoginForm, UserRegisterForm
+from accounts.forms import UserLoginForm, UserRegisterForm, UserUpdateForm
 from accounts.models import Profile
 from django.conf import settings
 from polls.models import poll_choice, poll_question
@@ -81,8 +81,19 @@ def register(request):
 
 def user_profile(request):
     """ Displays the logged in Users profile """
-    profile = Profile
+    
+    if request.method == 'POST':
+        user_update_form = UserUpdateForm(request.POST, instance = request.user)
+    
+        if user_update_form.is_valid():
+            user_update_form.save()
+            messages.success(request, "You have updated your profile!")
+            return redirect('profile')
+    else:
+        user_update_form = UserUpdateForm(instance = request.user)
+   
     user = User.objects.get(email = request.user.email)
+    context = {'user_update_form' : user_update_form, 'profile': user}
 
-    return render(request, 'profile.html', {'profile': user})
+    return render(request, 'profile.html', context)
 
