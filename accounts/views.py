@@ -84,8 +84,7 @@ def user_profile(request):
     """ Displays the logged in Users profile """
     
     orders = SingleOrderLineItem.objects.all()
-
-   
+        
 
     if request.method == 'POST':
         user_update_form = UserUpdateForm(request.POST, instance = request.user)
@@ -97,8 +96,8 @@ def user_profile(request):
     else:
         user_update_form = UserUpdateForm(instance = request.user)
    
-    user = User.objects.get(username = request.user.username)
-    context = {'user_update_form' : user_update_form, 'profile': user, 'orders':orders}
+    
+    context = {'user_update_form' : user_update_form, 'orders':orders}
 
     return render(request, 'profile.html', context)
 

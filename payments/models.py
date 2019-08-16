@@ -12,7 +12,7 @@ class SingleOrder(models.Model):
     # upload = models.FileField(upload_to="uploads", default="")
 
     def __str__(self):
-        return "{0}-{1}-{2}-{3}-{4}".format(self.id, self.date, self.name, self.brief, self.user)
+        return "{0}-{1}-{2}-{3}".format(self.id, self.date, self.name, self.brief)
 
 class SingleOrderUpload(models.Model):
     order = models.ForeignKey(SingleOrder, related_name='upload')

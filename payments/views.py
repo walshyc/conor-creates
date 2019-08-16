@@ -47,7 +47,7 @@ def payment(request, id):
                     request, "The payment has not been processed, please try again.")
             
             if customer.paid:
-                messages.error(request, "Thanks for your payment. We will be in touch soon!")
+                messages.error(request, "Thanks for your payment. We will be in touch soon!!!")
                 
 
                 return redirect(reverse('index'))

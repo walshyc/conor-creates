@@ -9,6 +9,8 @@
     <h3>Your Orders</h3>
   </div>
 </div>
+<p>{{user}}</p>
+
 
 
 <div class="row">
@@ -26,8 +28,9 @@
         </tr>
       </thead>
       <tbody>
+        
         {% for o in orders %}
-       
+       {{o.order.user}}
         {% if user == o.order.user %}
         <tr>
           <th scope="row">{{o.order.date}}</th>
@@ -49,7 +52,7 @@
 
 
 <div class="row">
-  <div class="col">
+  <div class="col-6">
     <form action="" method="POST">
       {% csrf_token %}
       <fieldset class="form-group">
