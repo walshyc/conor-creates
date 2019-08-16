@@ -9,10 +9,6 @@
     <h3>Your Orders</h3>
   </div>
 </div>
-
-
-
-
 <div class="row">
   <div class="col">
 
@@ -31,15 +27,21 @@
         
         {% for o in orders %}
       
-        
+
         {% if user == o.order.user %}
         <tr>
           <th scope="row">{{o.order.date}}</th>
           <td>{{o.service}}</td>
           <td>€{{o.service.price}}</td>
           <td>{{o.order.brief}}</td>
+          {% if o.order.uploaded_file %}
           <td><i class="fas fa-check"></i></td>
-          <td><i class="fas fa-file-download"></i></td>
+          <td><a href="{{o.order.uploaded_file.url}}" target="_blank"><i class="fas fa-file-download"></i></a></td>
+          {% else %}
+          <td></td>
+          <td></td>
+          {% endif %}
+          
         </tr>
         {% endif %}
         {% endfor %}

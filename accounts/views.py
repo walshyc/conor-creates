@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegisterForm, UserUpdateForm
 from accounts.models import Profile
-from payments.models import SingleOrder, SingleOrderLineItem
+from payments.models import SingleOrder, SingleOrderLineItem, SingleOrderUpload
 from django.conf import settings
 from polls.models import poll_choice, poll_question
 from services.models import Service, ServiceImage
@@ -96,11 +96,11 @@ def user_profile(request):
     else:
         user_update_form = UserUpdateForm(instance = request.user)
    
-    
+    uploads = SingleOrderUpload.objects.all()
     
     user = User.objects.get(email = request.user.email)
 
-    context = {'user_update_form' : user_update_form, 'orders':orders, 'profile': user}
+    context = {'user_update_form' : user_update_form, 'orders':orders, 'profile': user, 'uploads': uploads}
 
     return render(request, 'profile.html', context)
 
