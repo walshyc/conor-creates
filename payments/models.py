@@ -11,7 +11,7 @@ class SingleOrder(models.Model):
     email = models.EmailField(max_length=100, blank=False, default="")
     date = models.DateField()
     brief = models.TextField(default="", blank=False)
-    uploaded_file = models.FileField(upload_to='images', default = "")
+    uploaded_file = models.FileField(upload_to='images/uploads', default = "")
 
     def __str__(self):
         return "{0}-{1}-{2}-{3}".format(self.id, self.date, self.name, self.brief)
@@ -19,7 +19,7 @@ class SingleOrder(models.Model):
 
 class SingleOrderUpload(models.Model):
     order = models.ForeignKey(SingleOrder, related_name='upload')
-    uploaded_file = models.FileField(upload_to='images')
+    uploaded_file = models.FileField(upload_to='images/uploads')
 
 
 class SingleOrderLineItem(models.Model):

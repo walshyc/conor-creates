@@ -6,18 +6,14 @@ from accounts.forms import UserLoginForm, UserRegisterForm, UserUpdateForm
 from accounts.models import Profile
 from payments.models import SingleOrder, SingleOrderLineItem, SingleOrderUpload
 from django.conf import settings
-from polls.models import poll_choice, poll_question
 from services.models import Service, ServiceImage
 import os
 
 def index(request):
     """ Return the index.html file"""
     services = Service.objects.all()
-    current_poll = poll_question.objects.order_by('publication_date')[:1]
 
-    poll = ", ".join(q.question_text for q in current_poll)
-
-    return render(request, 'index.html', {'services':services, 'poll': poll})
+    return render(request, 'index.html', {'services':services})
 @login_required
 def logout(request):
     """ Log the user out """

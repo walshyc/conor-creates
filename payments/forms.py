@@ -7,8 +7,8 @@ class SinglePayForm(forms.Form):
     MONTHS = [(i, i) for i in range(1, 13)]
     YEARS = [(i, i) for i in range(2019, 2030)]
 
-    card_number = forms.CharField(label="Your Card Number", required=False)
-    cvv = forms.CharField(label="Security Number", required=False)
+    card_number = forms.CharField(label="Your Card Number", required=False, max_length=16, min_length=16)
+    cvv = forms.CharField(label="Security Number", required=False, max_length=3, min_length=3)
     expiry_month = forms.ChoiceField(
         label="Expiry Month", choices=MONTHS, required=False)
     expiry_year = forms.ChoiceField(
