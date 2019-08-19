@@ -29,7 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['conor-creates.herokuapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
