@@ -33,3 +33,4 @@ class SingleOrderForm(forms.ModelForm):
             'primary_color': TextInput(attrs={'type': 'color'}),
             'secondary_color': TextInput(attrs={'type': 'color'}),
         }
+
