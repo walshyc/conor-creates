@@ -16,7 +16,7 @@ class SingleOrder(models.Model):
     uploaded_file = models.FileField(upload_to='images/uploads', default = "")
 
     def __str__(self):
-        return "{0}-{1}-{2}-{3}".format(self.id, self.date, self.name, self.brief)
+        return "User: {0} - Order No.{1} placed on: {2} by: {3} with the instructions: {4}".format(self.user, self.id, self.date, self.name, self.brief)
 
 
 class SingleOrderUpload(models.Model):

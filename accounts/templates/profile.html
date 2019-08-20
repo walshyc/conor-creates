@@ -4,6 +4,56 @@
 {% block heading %}{{ user|title }}'s Profile{% endblock heading %}
 {% block content %}
 
+
+{% if user.is_superuser %}
+<div class="row">
+  <div class="col">
+    <h3>All Orders</h3>
+  </div>
+</div>
+<div class="row">
+    <div class="col">
+  
+      <table class="table table-hover table-responsive ">
+        <thead>
+          <tr class=" table-success">
+            <th scope="col">Date</th>
+            <th scope="col">Service</th>
+            <th scope="col">Price</th>
+            <th scope="col">Brief</th>
+            <th scope="col">Ready</th>
+            <th scope="col">Download</th>
+            <th scope="col">Review</th>
+          </tr>
+        </thead>
+        <tbody>
+  
+          {% for o in orders %}
+  
+  
+          <tr>
+            <th scope="row">{{o.order.date}}</th>
+            <td>{{o.service}}</td>
+            <td>€{{o.service.price}}</td>
+            <td>{{o.order.brief}}</td>
+            {% if o.order.uploaded_file %}
+            <td><i class="fas fa-check"></i></td>
+            <td><a href="{{o.order.uploaded_file.url}}" target="_blank"><i class="fas fa-file-download"></i></a></td>
+            <td><a href="{% url 'new-review' o.service.id %}"><i class="far fa-comment-dots"></i></a></td>
+            {% else %}
+            <td></td>
+            <td></td>
+            <td></td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+ 
+    </div>
+  </div>
+{% else %}
+
 <div class="row">
   <div class="col">
     <h3>Your Orders</h3>
@@ -25,9 +75,9 @@
         </tr>
       </thead>
       <tbody>
-        
+
         {% for o in orders %}
-      
+
 
         {% if user == o.order.user %}
         <tr>
@@ -44,8 +94,8 @@
           <td></td>
           <td></td>
           {% endif %}
-          
-          
+
+
         </tr>
         {% endif %}
         {% endfor %}
@@ -53,9 +103,10 @@
     </table>
     <small>Please leave a review for each service you have used.</small>
 
-    
+
   </div>
 </div>
+{% endif %}
 
 
 
