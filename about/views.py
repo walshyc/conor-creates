@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.core.mail import send_mail
-from .forms import ContactUsForm
+from services.models import Service
+from about.forms import ContactUsForm
 
 
 def about_page(request):
-
+    services = Service.objects.all() 
     if request.method == 'POST':
         form = ContactUsForm(request.POST)
 
@@ -25,4 +26,4 @@ def about_page(request):
     else:
         form = ContactUsForm()
 
-    return render(request, 'about.html', {'form': form})    
+    return render(request, 'about.html', {'form': form, 'services':services})    

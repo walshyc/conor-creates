@@ -5,14 +5,29 @@
 {% block content %}
 <div class="jumbotron" id="about-jumbo">
 
-  </div>
+</div>
 <div class="row">
     <div class="col-12 col-lg-6">
         <h2>About Us</h2>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi nihil error quasi reiciendis deleniti
-            voluptatum sed
-            porro fugit molestias eum culpa amet, dignissimos illo. Similique excepturi quisquam tenetur ipsa doloribus?
+        <p>ConorCreates is a graphic design agency based in the West of Ireland. We can work weith you to create the
+            graphics you need for your business, charity event, sporting event, music concert, wedding etc.
         </p>
+        <p>
+            We have a number of services that you can purchase directly online. Once your purchase a transcation your
+            order will appear in your profile page. Once we have your graphic produced we will upload it to yoiur
+            profile page where you can download the new graphic. You can also leave a review of the graphic from your profile page.
+        </p>
+        <p>
+            Our current list of services available to buy online are:
+        </p>
+        <ul>
+            {% for service in services %}
+            <li>
+               <a href="{% url 'single-service' service.id %}">{{ service.name }}</a> 
+            </li>
+            {% endfor %}
+        </ul>
+        <p>If you wish to get in touch with us please use the contact form on this page.</p>
     </div>
     <div class="col-12 col-lg-6 mb-2">
         <h2>Contact Us</h2>
@@ -20,7 +35,7 @@
             {% csrf_token %}
             {{ form| as_bootstrap }}
             <br>
-            <button type="submit" class="btn btn-success">Send Message</button>
+            <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
     </div>
 </div>
