@@ -4,13 +4,13 @@
 {% block heading %}{% endblock heading %}
 {% block content %}
 <div class="jumbotron" id="home-jumbo">
-  <h4 class="display-6 center">ConorCreates</h4>
-  <p class="lead">Welcome to my Graphic Design Portfolio</p>
+  <h3 class="display-3 center">ConorCreates</h3>
+  <p class="lead">Welcome to my Graphic Design Shop</p>
   <hr class="my-4">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae nostrum eveniet ea, assumenda minima quis aliquid
-    doloribus labore facilis earum? Necessitatibus porro nesciunt nisi similique ducimus veritatis a facilis delectus!
-  </p>
-  <p class="lead">
+  <h5 class="display-5">Select a service below that you wish to purchase. You can see examples of previous work along
+    with reviews from other customers below!
+  </h5>
+  <p class="lead mt-4">
     <a class="btn btn-success btn-lg" href="{% url 'about' %}" role="button">Contact Us</a>
   </p>
 </div>
@@ -22,7 +22,7 @@
 <div class="row mb-4">
   {% for service in services %}
   <div class="col-12 col-md-6 col-lg-4">
-    <div class="card bg-light mb-3">
+    <div class="card bg-light mb-3 h-100">
       <div class="card-body">
         <h4 class="card-title"><i class="{{service.short}}"></i> {{ service.name }}</h4>
         <p class="card-text">{{ service.description|truncatewords:30 }}</p>
@@ -55,27 +55,40 @@
 <div class="row">
 
   {% for review in reviews %}
-    {% if review.approved %}
+  {% if review.approved %}
   <div class="col-12 col-md-6 col-lg-4">
     <div class="card bg-light mb-3">
       <div class="card-body">
-        <h4 class="card-title"><i class="fas fa-{{service.short}}"></i> Review by {{ review.user.username }}</h4>
-        <p class="card-text"><span class="fa-stack fa-2x">
-          <i class="fa fa-star fa-stack-2x review-icon"></i>
-          <strong class="fa-stack-1x text-primary">{{ review.rating }}</strong>
-        </span> {{ review.comments }}</p>
-        <a href="{% url 'single-service' review.service.id %}" type="button" class="btn btn-primary btn-block">Buy {{ review.service }}</a>
+        <h4 class="card-title"><i class="fas fa-{{service.short}}"></i> {{ review.service.name }} Review</h4>
+        <div class="row">
+          <div class="col-4">
+            <p class="card-text"><span class="fa-stack fa-2x">
+                <i class="fa fa-star fa-stack-2x review-icon"></i>
+                <strong class="fa-stack-1x text-primary">{{ review.rating }}</strong>
+              </span></p>
+          </div>
+          <div class="col-8">
+            <p class="card-text">
+              <blockquote class="blockquote">
+                <p class="mb-0">{{ review.comments }}</p>
+                <footer class="blockquote-footer">{{review.user.username}}</footer>
+              </blockquote>
+            </p>
+
+          </div>
+          <a href="{% url 'single-service' review.service.id %}" type="button" class="btn btn-primary btn-block">Buy
+            {{ review.service }}</a>
+        </div>
       </div>
     </div>
+    {% endif %}
+    {% endfor %}
   </div>
-   {% endif %}
-  {% endfor %}
-</div>
 
-{% endblock content %}
+  {% endblock content %}
 
-{% block slickJS %}
-<!-- Slick JS -->
-<script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
-<script src="{% static 'js/slider.js' %}"></script>
-{% endblock slickJS %}
+  {% block slickJS %}
+  <!-- Slick JS -->
+  <script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
+  <script src="{% static 'js/slider.js' %}"></script>
+  {% endblock slickJS %}
