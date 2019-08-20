@@ -8,6 +8,7 @@ from django.conf import settings
 from django.utils import timezone
 import stripe
 
+stripe.api_key = settings.STRIPE_SECRET
 
 def all_services(request):
     services = Service.objects.all()
@@ -32,17 +33,6 @@ def single_service(request, pk):
             quantity = 1
             serviceID = service.id
 
-            # single_order = SingleOrder(
-            #     user=request.user
-            #     name=
-            #     contact_number=models.CharField(max_length=25, blank=False)
-            #     email=models.EmailField(
-            #         max_length=100, blank=False, default="")
-            #     date=models.DateField()
-            #     brief=models.TextField(default="", blank=False)
-            # )
-
-            # single_order.save()
             service = get_object_or_404(Service, pk=serviceID)
             total = service.price
             order_line_item = SingleOrderLineItem(
@@ -66,10 +56,9 @@ def single_service(request, pk):
                     request, "The payment has not been processed, please try again.")
 
             if customer.paid:
-                messages.error(
-                    request, "Thanks for your payment. We will be in touch soon!")
+                messages.success(request, "Thanks for your payment, your order information is below. Your graphic will be uploaded to this page once complete.")
 
-                return redirect(reverse('index'))
+                return redirect(reverse('profile'))
 
             else:
                 messages.error(

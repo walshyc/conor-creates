@@ -23,7 +23,6 @@ from django.views.static import serve
 from services import urls as services_urls
 from cart import urls as cart_urls
 from accounts import urls as accounts_urls
-from payments import urls as payment_urls
 from reviews import urls as reviews_urls
 from services.views import all_services
 from .settings import MEDIA_ROOT
@@ -33,7 +32,6 @@ urlpatterns = [
     url(r'^$', index, name="index"),
     url(r'^accounts/', include(accounts_urls)),
     url(r'^services/', include(services_urls)),
-    url(r'^payment/', include(payment_urls)),
     url(r'^reviews/', include(reviews_urls)),
     url(r'^about/', about_page, name="about"),
     url(r'^cart/', include(cart_urls)),
