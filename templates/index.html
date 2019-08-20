@@ -25,7 +25,7 @@
     <div class="card bg-light mb-3">
       <div class="card-body">
         <h4 class="card-title"><i class="{{service.short}}"></i> {{ service.name }}</h4>
-        <p class="card-text">{{ service.description|truncatewords:28 }}</p>
+        <p class="card-text">{{ service.description|truncatewords:30 }}</p>
         <a href="{% url 'single-service' service.id %}" type="button" class="btn btn-primary btn-block">View More</a>
       </div>
     </div>
