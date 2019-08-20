@@ -66,6 +66,8 @@ def register(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have now registered an account.")
+                
+                return redirect(reverse('index'))
             else:
                 messages.error(request, "We couldn't register your account.")
 
