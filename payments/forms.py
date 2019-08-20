@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.widgets import TextInput
 from payments.models import SingleOrder
 
 
@@ -19,7 +20,20 @@ class SinglePayForm(forms.Form):
 class SingleOrderForm(forms.ModelForm):
     class Meta:
         model = SingleOrder
-        fields = ('name', 'contact_number', 'email', 'brief')
+        fields = ('name', 'contact_number', 'email', 'primary_color', 'secondary_color', 'brief')
+        labels = {
+           "primary_color": "Main Color",
+           "secondary_color": "Other Color"
+    }
+        widgets = {
+            'brief': forms.Textarea(attrs={'cols': 50, 'rows': 10, 'placeholder': 'Enter as much detail as possbile about how you would like you design to look'}),
+            'primary_color': TextInput(attrs={'type': 'color'}),
+            'secondary_color': TextInput(attrs={'type': 'color'}),
+        }
+
+
+
+        
 
 
 # class BriefForm(forms.ModelForm):

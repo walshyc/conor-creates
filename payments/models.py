@@ -11,6 +11,8 @@ class SingleOrder(models.Model):
     email = models.EmailField(max_length=100, blank=False, default="")
     date = models.DateField()
     brief = models.TextField(default="", blank=False)
+    primary_color = models.CharField(max_length=7, blank=False)
+    secondary_color = models.CharField(max_length=7, blank=False)
     uploaded_file = models.FileField(upload_to='images/uploads', default = "")
 
     def __str__(self):
