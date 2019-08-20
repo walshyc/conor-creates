@@ -22,14 +22,14 @@
 <div class="row mb-4">
   {% for service in services %}
   <div class="col-12 col-md-6 col-lg-4">
-      <div class="card bg-light mb-3">
-        <div class="card-body">
-          <h4 class="card-title"><i class="fas fa-{{service.short}}"></i> {{ service.name }}</h4>
-          <p class="card-text">{{ service.description|truncatewords:28 }}</p>
-          <a href="{% url 'single-service' service.id %}" type="button" class="btn btn-primary btn-block">View More</a>
-        </div>
+    <div class="card bg-light mb-3">
+      <div class="card-body">
+        <h4 class="card-title"><i class="fas fa-{{service.short}}"></i> {{ service.name }}</h4>
+        <p class="card-text">{{ service.description|truncatewords:28 }}</p>
+        <a href="{% url 'single-service' service.id %}" type="button" class="btn btn-primary btn-block">View More</a>
       </div>
     </div>
+  </div>
   {% endfor %}
 
 </div>
@@ -44,22 +44,32 @@
     {% for img in services %}
     <div><img class="img-fluid" src="{{ img.main_image.url}}" alt=""></div>
     {% endfor %}
-    <!-- <div class="slide"><img src="{% static 'img/logo1.png' %}" alt=""><div class="slide-caption">Logo Design</div></div> -->
-    <!-- <div><img class="img-fluid" src="{% static 'img/logo1.png' %}" alt=""></div>
-    <div><img class="img-fluid" src="{% static 'img/web1.png' %}" alt=""></div>
-    <div><img class="img-fluid" src="{% static 'img/menu1.png' %}" alt=""></div>
-    <div><img class="img-fluid" src="{% static 'img/wedding1.png' %}" alt=""></div>
-    <div><img class="img-fluid" src="{% static 'img/social1.png' %}" alt=""></div>
-    <div><img class="img-fluid" src="{% static 'img/poster1.png' %}" alt=""></div> -->
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col">
+    <h4>Reviews of our Work</h4>
   </div>
 </div>
 <div class="row">
-  <div class="col">
-    {% for q in current_poll %}
-      <p>{{ q.question_text }}</p>
-      
-    {% endfor %}
+
+  {% for review in reviews %}
+    {% if review.approved %}
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card bg-light mb-3">
+      <div class="card-body">
+        <h4 class="card-title"><i class="fas fa-{{service.short}}"></i> Review by {{ review.user.username }}</h4>
+        <p class="card-text"><span class="fa-stack fa-2x">
+          <i class="fa fa-star fa-stack-2x review-icon"></i>
+          <strong class="fa-stack-1x text-primary">{{ review.rating }}</strong>
+        </span> {{ review.comments }}</p>
+        <a href="{% url 'single-service' review.service.id %}" type="button" class="btn btn-primary btn-block">Buy {{ review.service }}</a>
+      </div>
+    </div>
   </div>
+   {% endif %}
+  {% endfor %}
 </div>
 
 {% endblock content %}

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegisterForm, UserUpdateForm
 from accounts.models import Profile
 from payments.models import SingleOrder, SingleOrderLineItem, SingleOrderUpload
+from reviews.models import Review
 from django.conf import settings
 from services.models import Service, ServiceImage
 import os
@@ -12,8 +13,9 @@ import os
 def index(request):
     """ Return the index.html file"""
     services = Service.objects.all()
+    reviews = Review.objects.all()
 
-    return render(request, 'index.html', {'services':services})
+    return render(request, 'index.html', {'services':services, 'reviews': reviews})
 @login_required
 def logout(request):
     """ Log the user out """
