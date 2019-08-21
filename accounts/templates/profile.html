@@ -21,7 +21,7 @@
             <th scope="col">Date</th>
             <th scope="col">Service</th>
             <th scope="col">Price</th>
-            <th scope="col">Brief</th>
+            <th style="min-width: 300px;" scope="col">Brief</th>
             <th scope="col">Ready</th>
             <th scope="col">Download</th>
             <th scope="col">Review</th>
@@ -33,10 +33,10 @@
   
   
           <tr>
-            <th scope="row">{{o.order.user.username}}</th>
-            <th>{{o.order.date}}</th>
+            <td scope="row">{{o.order.user.username}}</td>
+            <td>{{o.order.date|date:"j/n/y"}}</td>
             <td>{{o.service}}</td>
-            <td>€{{o.service.price}}</td>
+            <td>€{{o.service.price|floatformat}}</td>
             <td>{{o.order.brief}}</td>
             {% if o.order.uploaded_file %}
             <td><i class="fas fa-check"></i></td>
@@ -70,7 +70,7 @@
           <th scope="col">Date</th>
           <th scope="col">Service</th>
           <th scope="col">Price</th>
-          <th scope="col">Brief</th>
+          <th style="min-width: 300px;" scope="col">Brief</th>
           <th scope="col">Ready</th>
           <th scope="col">Download</th>
           <th scope="col">Review</th>
@@ -85,7 +85,7 @@
         <tr>
           <th scope="row">{{o.order.date}}</th>
           <td>{{o.service}}</td>
-          <td>€{{o.service.price}}</td>
+          <td>€{{o.service.price|floatformat}}</td>
           <td>{{o.order.brief}}</td>
           {% if o.order.uploaded_file %}
           <td><i class="fas fa-check"></i></td>

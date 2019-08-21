@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'conor_creates.wsgi.application'
 
 
 
-if "DATABASE_URL" in os.environ:
+if "DATABASE5_URL" in os.environ:
     DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
 else:
     print("Database URL not found. Using SQLite instead")
