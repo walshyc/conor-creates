@@ -2,7 +2,8 @@ import random
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect, reverse
 from payments.forms import SinglePayForm, SingleOrderForm
 from payments.models import SingleOrderLineItem, SingleOrder
-from .models import Service, ServiceImage
+from services.models import Service, ServiceImage
+from reviews.models import Review
 from django.contrib import messages
 from django.conf import settings
 from django.utils import timezone
@@ -20,6 +21,7 @@ def all_services(request):
 def single_service(request, pk):
     service = get_object_or_404(Service, pk=pk)
     service_images = service.images.all()
+    reviews = Review.objects.all()
 
     if request.method == "POST":
         order_form = SingleOrderForm(request.POST)
@@ -72,4 +74,4 @@ def single_service(request, pk):
         order_form = SingleOrderForm()
         payment_form = SinglePayForm()
 
-    return render(request, 'single-service.html', {'service': service, 'images': service_images, 'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+    return render(request, 'single-service.html', {'service': service, 'images': service_images, 'order_form': order_form, 'payment_form': payment_form, 'reviews': reviews, 'publishable': settings.STRIPE_PUBLISHABLE})
