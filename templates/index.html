@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}Home - Conor Creates{% endblock title %}
+{% block slickJS %}
+<!-- Slick JS -->
+<script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
+<script src="{% static 'js/slider.js' %}"></script>
+{% endblock slickJS %}
 {% block heading %}{% endblock heading %}
 {% block content %}
 <div class="jumbotron" id="home-jumbo">
@@ -90,8 +95,3 @@
 
 {% endblock content %}
 
-{% block slickJS %}
-<!-- Slick JS -->
-<script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
-<script src="{% static 'js/slider.js' %}"></script>
-{% endblock slickJS %}
