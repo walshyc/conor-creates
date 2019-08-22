@@ -2,7 +2,7 @@ from django import forms
 from django.forms.widgets import TextInput
 from payments.models import SingleOrder
 
-
+# creates a form for a user to enter their credit card information
 class SinglePayForm(forms.Form):
 
     MONTHS = [(i, i) for i in range(1, 13)]
@@ -19,6 +19,7 @@ class SinglePayForm(forms.Form):
     stripe_id = forms.CharField(widget=forms.HiddenInput)
 
 
+# creates a form to allow a user to submit their order information
 class SingleOrderForm(forms.ModelForm):
     class Meta:
         model = SingleOrder
@@ -29,7 +30,9 @@ class SingleOrderForm(forms.ModelForm):
             "secondary_color": "Other Color"
         }
         widgets = {
+            # adds a placeholder to the brief textarea
             'brief': forms.Textarea(attrs={'cols': 50, 'rows': 10, 'placeholder': 'Enter as much detail as possbile about how you would like you design to look'}),
+            # allows the color input to be added to the color parts of the form
             'primary_color': TextInput(attrs={'type': 'color'}),
             'secondary_color': TextInput(attrs={'type': 'color'}),
         }

@@ -3,15 +3,16 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
+# creates a user login form
 class UserLoginForm(forms.Form):
-    """ For to allow users to log in """
+
 
     username = forms.CharField()
     password = forms.CharField(widget = forms.PasswordInput)
 
-
+# creates a user registration form
 class UserRegisterForm(UserCreationForm):
-    """ Form for registering new users """
+
     password1 = forms.CharField(label="Password", widget = forms.PasswordInput)
     password2 = forms.CharField(label = "Password Confirmation", widget = forms.PasswordInput)
 
@@ -40,7 +41,7 @@ class UserRegisterForm(UserCreationForm):
 
         return password2
 
-
+# form to update a users information
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
 

@@ -3,11 +3,13 @@
 {% block title %}About Us - Conor Creates{% endblock title %}
 
 {% block content %}
+<!-- Displays heading image -->
 <div class="jumbotron" id="about-jumbo">
 
 </div>
 <div class="row">
     <div class="col-12 col-lg-6">
+        <!-- Some information about the company -->
         <h2>About Us</h2>
         <p>ConorCreates is a graphic design agency based in the West of Ireland. We can work weith you to create the
             graphics you need for your business, charity event, sporting event, music concert, wedding etc.
@@ -21,6 +23,7 @@
             Our current list of services available to buy online are:
         </p>
         <ul>
+            <!-- for loop to get a list of the services from the database -->
             {% for service in services %}
             <li>
                <a href="{% url 'single-service' service.id %}">{{ service.name }}</a> 
@@ -29,6 +32,9 @@
         </ul>
         <p>If you wish to get in touch with us please use the contact form on this page.</p>
     </div>
+
+    <!-- Contact Form -->
+
     <div class="col-12 col-lg-6 mb-2">
         <h2>Contact Us</h2>
         <form method="POST" action="">

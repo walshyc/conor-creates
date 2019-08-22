@@ -3,6 +3,7 @@
 {% load bootstrap_tags %}
 {% block title %}{{ service.name }} - ConorCreates{% endblock title %}
 {% block stripeJS %}
+<!-- javascript to allow Stripe to run on this page -->
 <script src="https://js.stripe.com/v2/"></script>
 <script>
     //<![CDATA[
@@ -15,7 +16,9 @@
 
 <div class="row">
     <div class="col">
+        <!-- displays an image slideshow of the service -->
         <div class="home-slider mb-4">
+            <!--  loops through the images of the service -->
             {% for img in images %}
             <div><img class="img-fluid" src="{{ img.add_image.url}}" alt="{{ service.name }}"></div>
 
@@ -27,16 +30,18 @@
     </div>
 </div>
 <div class="row">
+    <!-- displays the service icon, name and price -->
     <div class="col">
         <h1><i class="{{service.short}}"></i> {{ service.name }} - €{{ service.price }}</h1>
     </div>
 </div>
 <div class="row">
+    <!-- displays the full description of the service -->
     <div class="col">
         <p class="">{{ service.description }}</p>
     </div>
 </div>
-
+<!-- checks if the user is logged in or not -->
 {% if not user.is_authenticated %}
 <div class="row">
     <div class="col">
@@ -47,8 +52,9 @@
         </div>
     </div>
 </div>
+<!-- if the user is logged in they can purchase the service -->
 {%else%}
-
+<!-- form that allows the user to purchase a service -->
 <form method="POST" role="form" action="{% url 'single-service' service.id %}" id="payment-form">
     {% csrf_token %}
 
@@ -75,15 +81,19 @@
 
 
 {% endif %}
+
 <div class="row mt-3 mb-3">
     <h3 class="col">Reviews for {{ service.name }}</h3>
 </div>
 
 <div class="row">
-
+    <!-- loop that adds all the reviews   -->
     {% for review in reviews %}
+    <!-- checks if the review is for the sleected service -->
     {% if review.service == service %}
+    <!-- checks if the review has been approved by the administrator -->
     {% if review.approved %}
+    <!-- displays the review if it has been approved -->
     <div class="col-12 col-md-6 col-lg-4">
         <div class="card bg-light mb-3 h-100">
             <div class="card-body d-flex flex-column">
@@ -120,7 +130,7 @@
 {% endblock %}
 
 {% block slickJS %}
-<!-- Slick JS -->
+<!-- Slick JS for image slideshow -->
 <script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
 <script src="{% static 'js/slider.js' %}"></script>
 {% endblock slickJS %}

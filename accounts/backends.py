@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User
 
 class EmailAuth:
-    """ Use email for authentication along with a password """
-
+    # Use email for authentication along with a password
     def authenticate(self, username = None, password = None):
         try:
             user = User.objects.get(email=username)

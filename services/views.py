@@ -9,15 +9,17 @@ from django.conf import settings
 from django.utils import timezone
 import stripe
 
+# API details for Stripe
 stripe.api_key = settings.STRIPE_SECRET
 
+# view that displays all the services 
 def all_services(request):
     services = Service.objects.all()
     service_images = services.all()
 
     return render(request, 'services.html', {'services': services, 'images': service_images})
 
-
+# view that displays a single service and process the payment
 def single_service(request, pk):
     service = get_object_or_404(Service, pk=pk)
     service_images = service.images.all()

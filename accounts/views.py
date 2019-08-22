@@ -10,21 +10,22 @@ from django.conf import settings
 from services.models import Service, ServiceImage
 import os
 
+# renders the homepage 
 def index(request):
-    """ Return the index.html file"""
+    
     services = Service.objects.all()
     reviews = Review.objects.all()
 
     return render(request, 'index.html', {'services':services, 'reviews': reviews})
+
+# view to allow a logged in user to logout
 @login_required
 def logout(request):
-    """ Log the user out """
-
     auth.logout(request)
     messages.success(request, "You have been logged out.")
     return redirect(reverse('index'))
 
-
+# view that allows an already registered user to login
 def login(request):
     """ Show a login page to the user """
     if request.user.is_authenticated:
@@ -51,9 +52,8 @@ def login(request):
 
     return render(request, 'login.html', {'login_form':login_form})
 
+# view that registers a new user
 def register(request):
-    """ Shows the register page """
-
     if request.user.is_authenticated:
         return redirect(reverse('index'))
 
@@ -80,9 +80,9 @@ def register(request):
 
     return render(request, 'register.html', {'register_form': register_form})
 
+
+# view that displays a users profile with all their information
 def user_profile(request):
-    """ Displays the logged in Users profile """
-    
     orders = SingleOrderLineItem.objects.all()
         
 

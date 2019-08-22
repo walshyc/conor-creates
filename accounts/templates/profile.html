@@ -4,16 +4,17 @@
 {% block heading %}{{ user|title }}'s Profile{% endblock heading %}
 {% block content %}
 
-
+<!-- Check if a Super User is logged in -->
 {% if user.is_superuser %}
 <div class="row">
   <div class="col">
+    <!-- Shows the Superuser all the orders placed -->
     <h3>All Orders</h3>
   </div>
 </div>
 <div class="row">
     <div class="col">
-  
+  <!-- table to display all the orders -->
       <table class="table table-hover table-responsive w-100 d-block d-md-table">
         <thead>
           <tr class=" table-success">
@@ -24,14 +25,11 @@
             <th style="min-width: 300px;" scope="col">Brief</th>
             <th scope="col">Ready</th>
             <th scope="col">Download</th>
-            <th scope="col">Review</th>
           </tr>
         </thead>
         <tbody>
-  
+          <!-- loop to add each order to a new row in the table -->
           {% for o in orders %}
-  
-  
           <tr>
             <td scope="row">{{o.order.user.username}}</td>
             <td>{{o.order.date|date:"j/n/y"}}</td>
@@ -41,7 +39,7 @@
             {% if o.order.uploaded_file %}
             <td><i class="fas fa-check"></i></td>
             <td><a href="{{o.order.uploaded_file.url}}" target="_blank"><i class="fas fa-file-download"></i></a></td>
-            <td><a href="{% url 'new-review' o.service.id %}"><i class="far fa-comment-dots"></i></a></td>
+            <td></td>
             {% else %}
             <td></td>
             <td></td>
@@ -54,6 +52,7 @@
  
     </div>
   </div>
+  <!-- if a superuser is not logged in the logged in user sees their own orders -->
 {% else %}
 
 <div class="row">
@@ -77,20 +76,21 @@
         </tr>
       </thead>
       <tbody>
-
+        <!-- loop to add each order to a new row in the table -->
         {% for o in orders %}
-
-
+        <!-- checks to ensure that only the users orders are shown in their table -->
         {% if user == o.order.user %}
         <tr>
           <th scope="row">{{o.order.date}}</th>
           <td>{{o.service}}</td>
           <td>€{{o.service.price|floatformat}}</td>
           <td>{{o.order.brief}}</td>
+          <!-- checks if a file has been uploaded to the order -->
           {% if o.order.uploaded_file %}
           <td><i class="fas fa-check"></i></td>
           <td><a href="{{o.order.uploaded_file.url}}" target="_blank"><i class="fas fa-file-download"></i></a></td>
           <td><a href="{% url 'new-review' o.service.id %}"><i class="far fa-comment-dots"></i></a></td>
+          <!-- returns empty columns otherwise -->
           {% else %}
           <td></td>
           <td></td>
@@ -110,9 +110,7 @@
 </div>
 {% endif %}
 
-
-
-
+<!-- form to update a users account information -->
 <div class="row mt-3">
   <div class="col-12 col-sm-6">
     <form action="" method="POST">

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock title %}</title>
-    <!-- Optional JavaScript -->
+    <!-- Bootstrap JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -18,9 +18,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <!-- Slick Css -->
-    <link rel="stylesheet" href="{% static 'slick/slick.css' %}">
-    <link rel="stylesheet" href="{% static 'slick/slick-theme.css' %}">
+
     <!-- Bootstrap Theme CSS file -->
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css">
@@ -28,12 +26,15 @@
     <script src="https://kit.fontawesome.com/463e725b4f.js"></script>
     <!-- Custom CSS file -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!--  allows for stripe javascript code to be added when needed -->
     {% block stripeJS %}
     {% endblock stripeJS %}
 
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="{% url 'index' %}">ConorCreates</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
@@ -56,11 +57,13 @@
             </ul>
 
             <ul class="navbar-nav ml-auto">
+                <!-- checks if the superuser is logged in and shows a direct link to the admin page -->
                 {% if user.is_superuser  %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'admin:index' %}"><i class="fas fa-users-cog icons"></i>Admin </a>
                 </li>
                 {% endif %}
+                <!-- checks if a user logged in and shows a direct link to their profile page or for them to logout -->
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user icons"></i>Profile</a>
@@ -69,6 +72,7 @@
                     <a class="nav-link" href="{% url 'logout' %}"><i class="far fa-times-circle icons"></i>Logout</a>
                 </li>
                 {% else %}
+                <!-- displays a login and register link to anoyone who is not logged in -->
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}"><i class="far fa-arrow-alt-circle-right icons"></i>Login<span
@@ -82,9 +86,11 @@
             </ul>
         </div>
     </nav>
-
+    <!-- Main container -->
     <div class="container">
+        <!--  displays a heading for each page -->
         <h1>{% block heading %}{% endblock heading %}</h1>
+        <!-- checks for any messages from any of the views and inserts them here if they exist -->
         {% if messages %}
         {% for message in messages %}
         <div class="alert alert-dismissible alert-success">
@@ -93,10 +99,11 @@
         </div>
         {% endfor %}
         {% endif %}
-
+        <!-- block to add the main content of each template -->
         {% block content %}
         {% endblock content %}
     </div>
+
     <!-- Footer -->
     <footer class="footer mt-5">
 
@@ -110,8 +117,7 @@
     {% block slickJS %}
     {% endblock %}
     <!-- Slick JS -->
-    <script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
-    <script src="{% static 'js/slider.js' %}"></script>
+
 </body>
 
 </html>

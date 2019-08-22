@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from services.models import Service
 
-
+#  a model for a review of a service
 class Review(models.Model):
     RATING_CHOICES = [('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),]
 
