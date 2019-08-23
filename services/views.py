@@ -23,7 +23,8 @@ def all_services(request):
 def single_service(request, pk):
     service = get_object_or_404(Service, pk=pk)
     service_images = service.images.all()
-    reviews = Review.objects.all()
+    reviews = Review.objects.order_by('-date')[0:40]
+
 
     if request.method == "POST":
         order_form = SingleOrderForm(request.POST)

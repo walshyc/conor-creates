@@ -60,7 +60,9 @@
 <div class="row">
   <div class="col">
     <div class="review-slider mb-4">
-      {% for review in reviews %}
+        
+      {% for review in reviews reversed %}
+      
       {% if review.approved %}
       <div class="card bg-light h-100">
         <div class="card-body d-flex flex-column">
@@ -87,7 +89,6 @@
           </div>
         </div>
       </div>
-
       {% endif %}
       {% endfor %}
     </div>
