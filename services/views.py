@@ -67,7 +67,7 @@ def single_service(request, pk):
                 customer_brief = order_form.cleaned_data['brief']
 
                 # sends an email to the customer with their order information
-                customer_message = "Thanks for your order for {0}. You have paid €{1}. Check your profile page on https://conor-creates.herokuapp.com/accounts/profile/ to see if your graphic has been uploaded".format(service.name, total)
+                customer_message = "Thanks for your order for {0}. You have paid €{1}. Check your profile page to see if your graphic has been uploaded".format(service.name, total)
                 send_mail('Your order for {0} on ConorCreates'.format(service.name), customer_message, settings.ADMIN_EMAIL , [customer_email])
                 messages.success(request, "Thanks for your payment, your order information is below. Your graphic will be uploaded to this page once complete.")
 
