@@ -93,45 +93,48 @@
 </div>
 
 <div class="row">
-    <!-- loop that adds all the reviews   -->
+    <div class="col">
+      <div class="review-slider mb-4">
+              <!-- loop that adds all the reviews   -->
     {% for review in reviews %}
     <!-- checks if the review is for the sleected service -->
     {% if review.service == service %}
     <!-- checks if the review has been approved by the administrator -->
     {% if review.approved %}
     <!-- displays the review if it has been approved -->
-    <div class="col-12 col-md-6 col-lg-4">
-        <div class="card bg-light mb-3 h-100">
-            <div class="card-body d-flex flex-column">
 
-                <h4 class="card-title"><i class="{{service.short}}"></i> {{ review.service.name }}</h4>
-
-                <div class="row">
-                    <div class="col-4 m-auto">
-                        <p class="card-text"><span class="fa-stack fa-2x">
-                                <i class="fa fa-star fa-stack-2x review-icon"></i>
-                                <strong class="fa-stack-1x text-primary">{{ review.rating }}</strong>
-                            </span></p>
-                    </div>
-                    <div class="col-8 mb-auto">
-                        <p class="card-text">
-                            <blockquote class="blockquote">
-                                <p class="mb-0">{{ review.comments }}</p>
-                                <footer class="blockquote-footer">{{review.user.username}}</footer>
-                            </blockquote>
-                        </p>
-
-                    </div>
-
-                </div>
+        <div class="card bg-light h-100">
+          <div class="card-body d-flex flex-column">
+            <a class="text-primary" href="{% url 'single-service' review.service.id %}">
+              <h4 class="card-title"><i class="{{service.short}}"></i> {{ review.service.name }}</h4>
+            </a>
+            <div class="row">
+              <div class="col-4 m-auto">
+                <p class="card-text"><span class="fa-stack fa-2x">
+                    <i class="fa fa-star fa-stack-2x review-icon"></i>
+                    <strong class="fa-stack-1x text-primary">{{ review.rating }}</strong>
+                  </span></p>
+              </div>
+              <div class="col-8 mb-auto">
+                <p class="card-text">
+                  <blockquote class="blockquote">
+                    <p class="mb-0">{{ review.comments }}</p>
+                    <footer class="blockquote-footer">{{review.user.username}}</footer>
+                  </blockquote>
+                </p>
+  
+              </div>
+  
             </div>
+          </div>
         </div>
-
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+      </div>
     </div>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-</div>
+  </div>
+
 
 {% endblock content %}
 

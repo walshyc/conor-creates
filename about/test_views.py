@@ -7,5 +7,3 @@ class TestAboutViews(TestCase):
         page = self.client.get('/about/')
         self.assertEqual(page.status_code,200)
         self.assertTemplateUsed(page, "about.html")
-
-   

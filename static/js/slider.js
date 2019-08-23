@@ -55,15 +55,21 @@ $('.review-slider').slick({
     {
       breakpoint: 600,
       settings: {
+        centerMode: false,
         slidesToShow: 2,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        variableWidth: false,
+        variableHeight: false,
       }
     },
     {
       breakpoint: 480,
       settings: {
+        centerMode: false,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        variableWidth: false,
+        variableHeight: false,
       }
     }
     // You can unslick at a given breakpoint now by adding:
