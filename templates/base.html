@@ -30,7 +30,15 @@
     <!--  allows for stripe javascript code to be added when needed -->
     {% block stripeJS %}
     {% endblock stripeJS %}
+    
 
+    <!-- Slick JS for image slideshow -->
+    <script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
+    <script src="{% static 'js/slider.js' %}"></script>    
+
+    <!-- Slick JS for image slideshow -->
+    <script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
+    <script src="{% static 'js/slider.js' %}"></script>
 
 </head>
 
@@ -113,14 +121,6 @@
         </div>
 
     </footer>
-
-
-    
-
-    <!-- Slick JS for image slideshow -->
-    <script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
-    <script src="{% static 'js/slider.js' %}"></script>
-
 </body>
 
 </html>
