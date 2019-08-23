@@ -14,7 +14,7 @@ import os
 def index(request):
     
     services = Service.objects.all()
-    reviews = Review.objects.order_by('-date')[0:10]
+    reviews = Review.objects.order_by('-pk')[:10]
 
     return render(request, 'index.html', {'services':services, 'reviews': reviews})
 
