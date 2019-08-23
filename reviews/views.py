@@ -9,7 +9,7 @@ from django.utils import timezone
 # view that adds a new review to the database
 def new_review(request, pk):
     service = get_object_or_404(Service, pk=pk)
-
+    
     if request.method == "POST":
         review_form = AddReviewForm(request.POST)
         

@@ -21,7 +21,6 @@ from django.views import static
 from django.views.generic import RedirectView
 from django.views.static import serve
 from services import urls as services_urls
-from cart import urls as cart_urls
 from accounts import urls as accounts_urls
 from reviews import urls as reviews_urls
 from services.views import all_services
@@ -34,6 +33,5 @@ urlpatterns = [
     url(r'^services/', include(services_urls)),
     url(r'^reviews/', include(reviews_urls)),
     url(r'^about/', about_page, name="about"),
-    url(r'^cart/', include(cart_urls)),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 ]
