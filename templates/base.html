@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock title %}</title>
+
     <!-- Bootstrap JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -18,9 +19,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <!-- adds css files for slickjs slideshow -->
+    {% block slickcss %}
+    {% endblock slickcss %}
 
     <!-- Bootstrap Theme CSS file -->
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css">
     <!-- Font Awesome Link -->
     <script src="https://kit.fontawesome.com/463e725b4f.js"></script>
@@ -30,15 +34,7 @@
     <!--  allows for stripe javascript code to be added when needed -->
     {% block stripeJS %}
     {% endblock stripeJS %}
-    
 
-    <!-- Slick JS for image slideshow -->
-    <script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
-    <script src="{% static 'js/slider.js' %}"></script>    
-
-    <!-- Slick JS for image slideshow -->
-    <script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
-    <script src="{% static 'js/slider.js' %}"></script>
 
 </head>
 
@@ -57,7 +53,8 @@
                     <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-desktop icons"></i>Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'services' %}"><i class="fas fa-pencil-ruler icons"></i>Services</a>
+                    <a class="nav-link" href="{% url 'services' %}"><i
+                            class="fas fa-pencil-ruler icons"></i>Services</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'about' %}"><i class="fas fa-question-circle icons"></i>About</a>
@@ -84,7 +81,8 @@
                 <!-- displays a login and register link to anoyone who is not logged in -->
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}"><i class="far fa-arrow-alt-circle-right icons"></i>Login<span
+                    <a class="nav-link" href="{% url 'login' %}"><i
+                            class="far fa-arrow-alt-circle-right icons"></i>Login<span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -98,7 +96,7 @@
     <!-- Main container -->
     <div class="container">
         <!--  displays a heading for each page -->
-        <h1>{% block heading %}{% endblock heading %}</h1>
+        <h1 class="mt-5 mb-5">{% block heading %}{% endblock heading %}</h1>
         <!-- checks for any messages from any of the views and inserts them here if they exist -->
         {% if messages %}
         {% for message in messages %}
@@ -122,9 +120,8 @@
 
     </footer>
 
-    {% block slickJS %}
-    {% endblock slickJS %}
-
+    {% block slickjs %}
+    {% endblock slickjs %}
 
 </body>
 

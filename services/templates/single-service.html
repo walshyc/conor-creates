@@ -2,6 +2,11 @@
 {% load staticfiles %}
 {% load bootstrap_tags %}
 {% block title %}{{ service.name }} - ConorCreates{% endblock title %}
+<!-- adds css files for slickjs slideshow -->
+{% block slickcss %}
+<link rel="stylesheet" href="{% static 'slick/slick.css' %}">
+<link rel="stylesheet" href="{% static 'slick/slick-theme.css' %}">
+{% endblock slickcss %}
 {% block stripeJS %}
 <!-- javascript to allow Stripe to run on this page -->
 <script src="https://js.stripe.com/v2/"></script>
@@ -98,9 +103,9 @@
     <div class="col-12 col-md-6 col-lg-4">
         <div class="card bg-light mb-3 h-100">
             <div class="card-body d-flex flex-column">
-                
-                    <h4 class="card-title"><i class="{{service.short}}"></i> {{ review.service.name }}</h4>
-                
+
+                <h4 class="card-title"><i class="{{service.short}}"></i> {{ review.service.name }}</h4>
+
                 <div class="row">
                     <div class="col-4 m-auto">
                         <p class="card-text"><span class="fa-stack fa-2x">
@@ -130,9 +135,8 @@
 
 {% endblock content %}
 
-{% block slickJS %}
-<!-- Slick JS -->
+<!-- adds javascript files for slickjs slideshow -->
+{% block slickjs %}
 <script type="text/javascript" src="{% static 'slick/slick.js' %}"></script>
 <script src="{% static 'js/slider.js' %}"></script>
-{% endblock slickJS %}
-
+{% endblock slickjs %}
